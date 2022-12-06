@@ -1,12 +1,11 @@
-﻿namespace WCNFParser.Clauses
-{
-   public class BaseClause
-   {
-      public int[] Ints { get; set; }
+﻿namespace WCNFParser.Clauses;
 
-      public override string ToString()
-      {
-         return string.Join(' ', Ints);
-      }
+public class BaseClause
+{
+   public int[] Ints { get; set; }
+
+   public override string ToString()
+   {
+      return string.Join(' ', Ints);
    }
 }

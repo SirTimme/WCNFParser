@@ -39,7 +39,7 @@ public class Program
                .Select(int.Parse)
                .ToArray();
 
-            clauses.Add(new Clause(numbers));
+            clauses.Add(new SoftClause(numbers));
          }
       }
 
@@ -49,12 +49,14 @@ public class Program
    /// <summary>
    /// Outputs the passed clauses to console
    /// </summary>
-   /// <param name="clauses">The causes to be outputted</param>
+   /// <param name="clauses">The clauses to be output</param>
    private static void OutputClausesToConsole(List<BaseClause> clauses)
    {
       foreach (var clause in clauses)
       {
          Console.WriteLine(clause.ToString());
       }
+
+      _ = Console.ReadKey();
    }
 }

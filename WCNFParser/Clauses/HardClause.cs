@@ -1,17 +1,16 @@
-﻿namespace WCNFParser.Clauses
+﻿namespace WCNFParser.Clauses;
+
+public class HardClause : BaseClause
 {
-   public class HardClause : BaseClause
+   public HardClause() { }
+
+   public HardClause(int[] ints)
    {
-      public HardClause() { }
+      Ints = ints;
+   }
 
-      public HardClause(int[] ints)
-      {
-         Ints = ints;
-      }
-
-      public override string ToString()
-      {
-         return $"h {base.ToString()}";
-      }
+   public override string ToString()
+   {
+      return $"h {base.ToString()}";
    }
 }
