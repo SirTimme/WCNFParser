@@ -4,6 +4,10 @@ namespace WNCFParser;
 
 public class Program
 {
+   /// <summary>
+   /// Main entry point of the program
+   /// </summary>
+   /// <param name="args">Additional arguments</param>
    public static void Main(string[] args)
    {
       var clauses = new List<BaseClause>();
@@ -11,10 +15,12 @@ public class Program
 
       foreach (var line in lines)
       {
+         // ignore comments
          if (line.StartsWith("c"))
          {
             continue;
          }
+         // hard clauses
          else if (line.StartsWith("h"))
          {
             var numbers = line
@@ -33,15 +39,22 @@ public class Program
                .Select(int.Parse)
                .ToArray();
 
-            clauses.Add(new SoftClause(numbers));
+            clauses.Add(new Clause(numbers));
          }
       }
 
-      OutputClausesToFile(clauses);
+      OutputClausesToConsole(clauses);
    }
 
-   private static void OutputClausesToFile(List<BaseClause> clauses)
+   /// <summary>
+   /// Outputs the passed clauses to console
+   /// </summary>
+   /// <param name="clauses">The causes to be outputted</param>
+   private static void OutputClausesToConsole(List<BaseClause> clauses)
    {
-      File.WriteAllLines("C:\\Users\\timpi\\Downloads\\test2.wncf", clauses.Select(clause => clause.ToString()));
+      foreach (var clause in clauses)
+      {
+         Console.WriteLine(clause.ToString());
+      }
    }
 }
