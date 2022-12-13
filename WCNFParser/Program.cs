@@ -12,7 +12,7 @@ public class Program
    {
       var clauses = new List<BaseClause>();
 
-      // first cmd line arg is filepath
+      // first cmd line argument is the filepath of the wcnf file
       var lines = File.ReadLines(args[0]);
 
       foreach (var line in lines)
