@@ -39,7 +39,7 @@ public class Program
                .Select(int.Parse)
                .ToArray();
 
-            clauses.Add(new SoftClause(numbers));
+            clauses.Add(new SoftClause(numbers[0], numbers.Skip(1).ToArray()));
          }
       }
 
