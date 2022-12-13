@@ -54,9 +54,6 @@ public class Program
    /// <param name="clauses">The clauses to be output</param>
    private static void OutputClausesToConsole(List<BaseClause> clauses)
    {
-      foreach (var clause in clauses)
-      {
-         Console.WriteLine(clause.ToString());
-      }
+      clauses.ForEach(clause => Console.WriteLine(clause.ToString()));
    }
 }
