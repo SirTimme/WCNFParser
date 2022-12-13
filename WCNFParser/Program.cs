@@ -11,7 +11,9 @@ public class Program
    public static void Main(string[] args)
    {
       var clauses = new List<BaseClause>();
-      var lines = File.ReadLines("C:\\Users\\timpi\\Downloads\\log.8.wcsp.log.wcnf");
+
+      // first cmd line arg is filepath
+      var lines = File.ReadLines(args[0]);
 
       foreach (var line in lines)
       {
@@ -56,7 +58,5 @@ public class Program
       {
          Console.WriteLine(clause.ToString());
       }
-
-      _ = Console.ReadKey();
    }
 }
