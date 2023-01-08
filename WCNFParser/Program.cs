@@ -8,44 +8,52 @@ public class Program
    /// Main entry point of the program
    /// </summary>
    /// <param name="args">Additional arguments</param>
-   public static void Main(string[] args)
+   public static int Main(string[] args)
    {
       var clauses = new List<BaseClause>();
-
-      // first cmd line argument is the filepath of the wcnf file
       var lines = File.ReadLines(args[0]);
 
-      foreach (var line in lines)
+      try
       {
-         // ignore comments
-         if (line.StartsWith("c"))
+         foreach (var line in lines)
          {
-            continue;
-         }
-         // hard clauses
-         else if (line.StartsWith("h"))
-         {
-            var numbers = line
-               .Split(' ')
-               .SkipWhile(entry => entry == string.Empty || entry == "h")
-               .Select(int.Parse)
-               .ToArray();
+            // ignore comments
+            if (line.StartsWith("c"))
+            {
+               continue;
+            }
+            // hard clauses
+            else if (line.StartsWith("h"))
+            {
+               var numbers = line
+                  .Split(' ')
+                  .SkipWhile(entry => entry == string.Empty || entry == "h")
+                  .Select(int.Parse)
+                  .ToArray();
 
-            clauses.Add(new HardClause(numbers));
-         }
-         else
-         {
-            var numbers = line
-               .Split(' ')
-               .SkipWhile(entry => entry == string.Empty)
-               .Select(int.Parse)
-               .ToArray();
+               clauses.Add(new HardClause(numbers));
+            }
+            // weightened clauses
+            else
+            {
+               var numbers = line
+                  .Split(' ')
+                  .SkipWhile(entry => entry == string.Empty)
+                  .Select(int.Parse)
+                  .ToArray();
 
-            clauses.Add(new SoftClause(numbers[0], numbers.Skip(1).ToArray()));
+               clauses.Add(new SoftClause(numbers[0], numbers.Skip(1).ToArray()));
+            }
          }
+      } 
+      catch
+      {
+         return 1;
       }
 
-      OutputClausesToConsole(clauses);
+      // OutputClausesToConsole(clauses);
+
+      return 0;
    }
 
    /// <summary>
